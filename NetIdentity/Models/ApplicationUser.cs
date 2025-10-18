@@ -6,6 +6,7 @@ namespace NetIdentity.Models
     {
         public DateTime FechaNacimiento { get; set; }
         public string? NombreCompleto { get; set; }
+        //public string genero { get; set; }
     }
 
 }

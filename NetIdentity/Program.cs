@@ -19,7 +19,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequiredLength = 6;
+    options.Password.RequiredLength = 5;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
@@ -42,6 +42,12 @@ builder.Services.AddAuthorization(options =>
             }
             return false;
         }));
+
+    options.AddPolicy("SoloAdmin", policy => policy.RequireRole("Admin"));
+
+    options.AddPolicy("AdminOUsuario", policy =>
+        policy.RequireRole("Admin", "Usuario"));
+
 });
 
 
